@@ -1,0 +1,19 @@
+{
+  "name": "hexo-leancloud-counter",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LEAFERx/hexo-leancloud-counter.git"
+  },
+  "author": "LEAFERx <leaferx@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LEAFERx/hexo-leancloud-counter/issues"
+  },
+  "homepage": "https://github.com/LEAFERx/hexo-leancloud-counter#readme"
+}
