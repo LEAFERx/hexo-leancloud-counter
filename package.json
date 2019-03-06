@@ -15,5 +15,21 @@
   "bugs": {
     "url": "https://github.com/LEAFERx/hexo-leancloud-counter/issues"
   },
-  "homepage": "https://github.com/LEAFERx/hexo-leancloud-counter#readme"
+  "homepage": "https://github.com/LEAFERx/hexo-leancloud-counter#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "inquirer": "^6.2.2",
+    "leancloud-storage": "^3.12.0"
+  },
+  "peerDependencies": {
+    "puppeteer": "^1.13.0"
+  }
 }
