@@ -7,11 +7,11 @@ function info(msg) {
 }
 
 function warn(msg) {
-  log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgYellow('INFO')} ${msg}`);
+  log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgYellow('WARN')} ${msg}`);
 }
 
 function error(msg) {
-  log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgRed('INFO')} ${msg}`);
+  log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgRed('ERR!')} ${msg}`);
 }
 
 module.exports = {
