@@ -1,5 +1,6 @@
 const AV = require('leancloud-storage');
 const inquirer = require('inquirer');
+const spawn = require('cross-spawn');
 const packageInfo = require('../../package.json');
 const log = require('./log');
 
@@ -49,6 +50,9 @@ async function init() {
     appKey: APP_KEY,
   });
 
+  let questions;
+  let answers;
+
   // Try create the Counter class by creating a test object
   try {
     const Counter = AV.Object.extend('Counter');
@@ -68,16 +72,26 @@ async function init() {
   const randomPassword = Math.random().toString(36).substr(2)
                        + Math.random().toString(36).substr(2);
   let adminId;
-  user.setUsername('admin');
+  questions = [
+    {
+      type: 'input',
+      name: 'username',
+      message: 'username?',
+      default: 'admin',
+    },
+  ];
+  answers = await inquirer.prompt(questions);
+  user.setUsername(answers.username);
   user.setPassword(randomPassword);
   try {
     log.info(randomPassword);
     adminId = (await user.signUp()).id;
   } catch (err) {
     log.error(err);
+    return;
   }
 
-  const questions = [
+  questions = [
     {
       type: 'confirm',
       name: 'toContinue',
@@ -85,8 +99,8 @@ async function init() {
       default: true,
     }, {
       type: 'input',
-      name: 'username',
-      message: 'username?',
+      name: 'email',
+      message: 'email?',
       when: ans => ans.toContinue,
     }, {
       type: 'password',
@@ -96,16 +110,61 @@ async function init() {
       when: ans => ans.toContinue,
     },
   ];
-  const answers = await inquirer.prompt(questions);
+  answers = await inquirer.prompt(questions);
   if (!answers.toContinue) return;
   let puppeteer;
+  let installFlag;
   try {
     // eslint-disable-next-line global-require, import/no-unresolved
     puppeteer = require('puppeteer');
   } catch (err) {
     log.error('Oops! Seems like puppeteer is not installed.');
-    return;
+    questions = [{
+      type: 'list',
+      name: 'install',
+      message: 'install puppeteer?',
+      choices: [
+        'install for me',
+        'install for me using taobao cdn',
+        'nope',
+      ],
+      default: 'nope',
+    }];
+    answers = await inquirer.prompt(questions);
+    if (answers.install === 'nope') return;
+    installFlag = answers.install === 'install for me' ? 1 : 2;
   }
+  if (installFlag) {
+    try {
+      const cmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+      const args = ['install', 'puppeteer', '--production'];
+      if (installFlag === 2) {
+        args.push('--chromedriver_cdnurl=http://npm.taobao.org/mirrors/chromedriver');
+      }
+      const promise = new Promise((resolve, reject) => {
+        const child = spawn(cmd, args, {
+          cwd: process.cwd(),
+          stdio: 'inherit',
+        });
+        child.on('error', reject);
+        child.on('exit', (code) => {
+          if (code === 0) {
+            resolve();
+          } else {
+            reject();
+          }
+        });
+      });
+      await promise;
+      // eslint-disable-next-line global-require, import/no-unresolved
+      puppeteer = require('puppeteer');
+    } catch (err) {
+      log.error(err);
+      log.error('Still can not import puppeteer. Exiting now...');
+      return;
+    }
+  }
+
   try {
     const browser = await puppeteer.launch({
       timeout: 15000,
@@ -113,7 +172,7 @@ async function init() {
     });
     const page = await browser.newPage();
     await page.goto('https://leancloud.cn/dashboard/login.html#/signin');
-    await page.type('#inputEmail', answers.username);
+    await page.type('#inputEmail', answers.email);
     await page.type('#inputPassword', answers.password);
     await page.click('#loginBtn');
     await page.waitForNavigation({

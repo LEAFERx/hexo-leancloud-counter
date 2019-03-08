@@ -103,7 +103,7 @@ function _sync() {
             APP_ID = config.leancloud_counter.app_id;
             APP_KEY = config.leancloud_counter.app_key;
             publicDir = this.public_dir;
-            urlsFile = pathFn.join(publicDir, 'leancloud_counter_urls.json');
+            urlsFile = pathFn.join(publicDir, 'leancloud_counter_post_list.json');
             urls = JSON.parse(fs.readFileSync(urlsFile, 'utf8'));
             AV.init({
               appId: APP_ID,

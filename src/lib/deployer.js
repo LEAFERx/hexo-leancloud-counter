@@ -66,7 +66,7 @@ async function sync() {
     const APP_ID = config.leancloud_counter.app_id;
     const APP_KEY = config.leancloud_counter.app_key;
     const publicDir = this.public_dir;
-    const urlsFile = pathFn.join(publicDir, 'leancloud_counter_urls.json');
+    const urlsFile = pathFn.join(publicDir, 'leancloud_counter_post_list.json');
     const urls = JSON.parse(fs.readFileSync(urlsFile, 'utf8'));
 
     AV.init({
