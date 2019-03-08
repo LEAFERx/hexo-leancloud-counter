@@ -62,11 +62,11 @@ const passwordQuestion = {
 async function sync() {
   const { config } = this;
 
-  if (config.leancloud_counter_security.enable_sync) {
-    const APP_ID = config.leancloud_counter_security.app_id;
-    const APP_KEY = config.leancloud_counter_security.app_key;
+  if (config.leancloud_counter.enable_sync) {
+    const APP_ID = config.leancloud_counter.app_id;
+    const APP_KEY = config.leancloud_counter.app_key;
     const publicDir = this.public_dir;
-    const urlsFile = pathFn.join(publicDir, 'leancloud_counter_security_urls.json');
+    const urlsFile = pathFn.join(publicDir, 'leancloud_counter_urls.json');
     const urls = JSON.parse(fs.readFileSync(urlsFile, 'utf8'));
 
     AV.init({
@@ -76,8 +76,8 @@ async function sync() {
 
     const currentUser = AV.User.current();
     if (!currentUser) {
-      let userName = config.leancloud_counter_security.username;
-      let passWord = config.leancloud_counter_security.password;
+      let userName = config.leancloud_counter.username;
+      let passWord = config.leancloud_counter.password;
       if (!userName) {
         await inquirer.prompt([usernameQuestion, passwordQuestion])
           .then((answers) => {

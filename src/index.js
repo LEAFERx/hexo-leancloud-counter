@@ -8,11 +8,11 @@ const {
   sync,
 } = require('./lib/deployer');
 
-hexo.extend.deployer.register('leancloud_counter_security_sync', sync);
+hexo.extend.deployer.register('leancloud_counter_sync', sync);
 
 const {
   commandOptions,
   commandFunc,
 } = require('./lib/cli');
 
-hexo.extend.console.register('lc-counter', 'hexo-leancloud-counter-security', commandOptions, commandFunc);
+hexo.extend.console.register('lc-counter', 'hexo-leancloud-counter', commandOptions, commandFunc);

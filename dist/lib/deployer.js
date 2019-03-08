@@ -95,15 +95,15 @@ function _sync() {
           case 0:
             config = this.config;
 
-            if (!config.leancloud_counter_security.enable_sync) {
+            if (!config.leancloud_counter.enable_sync) {
               _context.next = 34;
               break;
             }
 
-            APP_ID = config.leancloud_counter_security.app_id;
-            APP_KEY = config.leancloud_counter_security.app_key;
+            APP_ID = config.leancloud_counter.app_id;
+            APP_KEY = config.leancloud_counter.app_key;
             publicDir = this.public_dir;
-            urlsFile = pathFn.join(publicDir, 'leancloud_counter_security_urls.json');
+            urlsFile = pathFn.join(publicDir, 'leancloud_counter_urls.json');
             urls = JSON.parse(fs.readFileSync(urlsFile, 'utf8'));
             AV.init({
               appId: APP_ID,
@@ -116,8 +116,8 @@ function _sync() {
               break;
             }
 
-            userName = config.leancloud_counter_security.username;
-            passWord = config.leancloud_counter_security.password;
+            userName = config.leancloud_counter.username;
+            passWord = config.leancloud_counter.password;
 
             if (userName) {
               _context.next = 17;

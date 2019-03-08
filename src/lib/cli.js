@@ -20,8 +20,8 @@ const commandOptions = {
 
 function register(username, password) {
   const { config } = this;
-  const APP_ID = config.leancloud_counter_security.app_id;
-  const APP_KEY = config.leancloud_counter_security.app_key;
+  const APP_ID = config.leancloud_counter.app_id;
+  const APP_KEY = config.leancloud_counter.app_key;
   AV.init({
     appId: APP_ID,
     appKey: APP_KEY,
@@ -42,8 +42,8 @@ function register(username, password) {
 
 async function init() {
   const { config } = this;
-  const APP_ID = config.leancloud_counter_security.app_id;
-  const APP_KEY = config.leancloud_counter_security.app_key;
+  const APP_ID = config.leancloud_counter.app_id;
+  const APP_KEY = config.leancloud_counter.app_key;
   AV.init({
     appId: APP_ID,
     appKey: APP_KEY,

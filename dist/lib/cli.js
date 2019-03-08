@@ -28,8 +28,8 @@ var commandOptions = {
 
 function register(username, password) {
   var config = this.config;
-  var APP_ID = config.leancloud_counter_security.app_id;
-  var APP_KEY = config.leancloud_counter_security.app_key;
+  var APP_ID = config.leancloud_counter.app_id;
+  var APP_KEY = config.leancloud_counter.app_key;
   AV.init({
     appId: APP_ID,
     appKey: APP_KEY
@@ -58,8 +58,8 @@ function _init() {
         switch (_context.prev = _context.next) {
           case 0:
             config = this.config;
-            APP_ID = config.leancloud_counter_security.app_id;
-            APP_KEY = config.leancloud_counter_security.app_key;
+            APP_ID = config.leancloud_counter.app_id;
+            APP_KEY = config.leancloud_counter.app_key;
             AV.init({
               appId: APP_ID,
               appKey: APP_KEY
