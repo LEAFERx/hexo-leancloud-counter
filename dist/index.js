@@ -16,9 +16,7 @@ var _require3 = require('./lib/cli'),
 
 hexo.extend.console.register('lc-counter', 'hexo-leancloud-counter', commandOptions, commandFunc);
 
-var _require4 = require('./lib/tag'),
-    scriptTag = _require4.scriptTag;
+var _require4 = require('./lib/helper'),
+    scriptHelper = _require4.scriptHelper;
 
-hexo.extend.tag.register('leancloud-counter-script', scriptTag, {
-  async: true
-});
+hexo.extend.helper.register('leancloud_counter_script', scriptHelper);

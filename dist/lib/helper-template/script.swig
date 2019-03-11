@@ -9,17 +9,9 @@
       .done(function({ results }) {
         if (results.length > 0) {
           var counter = results[0];
-          {% if betterPerformance %}
-            var $element = $(document.getElementById(url));
-            $element.find('.leancloud-visitors-count').text(counter.time + 1);
-          {% endif %}
+          var $element = $(document.getElementById(url));
+          $element.find('.leancloud-visitors-count').text(counter.time + 1);
           Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
-          {% if not betterPerformance %}
-            .done(function() {
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text(counter.time + 1);
-            })
-          {% endif %}
             .fail(function ({ responseJSON }) {
               console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
             })

@@ -21,4 +21,4 @@ const {
   scriptHelper,
 } = require('./lib/helper');
 
-hexo.extend.helper.register('leancloud-counter-script', scriptHelper);
+hexo.extend.helper.register('leancloud_counter_script', scriptHelper);
