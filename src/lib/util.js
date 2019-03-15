@@ -8,7 +8,7 @@ async function getMasterKey() {
     {
       type: 'input',
       name: 'masterKey',
-      message: 'master key?',
+      message: 'Please input the master key of your application',
     },
   ];
   const answers = await inquirer.prompt(questions);

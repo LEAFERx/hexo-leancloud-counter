@@ -49,7 +49,7 @@ function postOperation(env, cnt, limit, newData, memoData) {
 async function sync() {
   const { config } = this;
 
-  if (config.leancloud_counter.enable_sync) {
+  if (config.leancloud_counter.enable) {
     const APP_ID = config.leancloud_counter.app_id;
     const APP_KEY = config.leancloud_counter.app_key;
     const MASTER_KEY = config.leancloud_counter.master_key

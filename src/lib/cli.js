@@ -28,9 +28,11 @@ async function createCounterClass() {
     await AV.Query.doCloudQuery(`delete from Counter where objectId="${res.id}"`);
   } catch (err) {
     log.error(err);
-    return;
+    log.error('Check your app_id / app_key / master_key.');
+    return false;
   }
   log.info('Successfully created Counter class.');
+  return true;
 }
 
 async function installPuppeteer(installFlag) {
@@ -69,22 +71,22 @@ async function importPuppeteer() {
     // eslint-disable-next-line global-require, import/no-unresolved
     return require('puppeteer');
   } catch (err) {
-    log.error('Oops! Seems like puppeteer is not installed.');
+    log.warn('Oops! Seems like puppeteer is not installed.');
     const questions = [{
       type: 'list',
       name: 'install',
-      message: 'install puppeteer?',
+      message: 'Do you want install puppeteer now?',
       choices: [
-        'install for me',
-        'install for me using taobao cdn',
+        'install now',
+        'install using Taobao CDN (for Chinese user)',
         'nope',
       ],
-      default: 'nope',
+      default: 'install now',
     }];
     const answers = await inquirer.prompt(questions);
 
     if (answers.install === 'nope') return false;
-    const installFlag = answers.install === 'install for me' ? 1 : 2;
+    const installFlag = answers.install === 'install now' ? 1 : 2;
     return installPuppeteer(installFlag);
   }
 }
@@ -106,7 +108,7 @@ async function init() {
   let questions;
   let answers;
 
-  await createCounterClass();
+  if (!await createCounterClass()) return;
 
   questions = [
     {
@@ -126,16 +128,17 @@ async function init() {
     {
       type: 'input',
       name: 'email',
-      message: 'email?',
+      message: 'Please input your email for LeanCloud',
     }, {
       type: 'password',
       name: 'password',
-      message: 'password?',
+      message: 'Please input your password for LeanCloud (it will not be saved)',
       mask: '*',
     },
   ];
   answers = await inquirer.prompt(questions);
 
+  log.info('Setting up class ACL for you. It may take some time...');
   const browser = await puppeteer.launch({
     timeout: 15000,
     ignoreHTTPSErrors: true,
@@ -147,6 +150,7 @@ async function init() {
     await page.type('#inputPassword', answers.password);
     await page.click('#loginBtn');
     await page.waitForNavigation({
+      timeout: 3000,
       waitUntil: 'load',
     });
     await page.goto(`https://leancloud.cn/dashboard/data.html?appid=${APP_ID}#/Counter`);
@@ -186,6 +190,7 @@ async function init() {
     browser.close();
     log.error(err);
   }
+  log.info('All set!');
 }
 
 function commandFunc(args) {
