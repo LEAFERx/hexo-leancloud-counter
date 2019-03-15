@@ -11,6 +11,7 @@
     "build": "gulp build",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
+    "docs:deploy": "sh scripts/deploy-docs.sh",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "prepublishOnly": "npm run lint:fix && npm run build"
