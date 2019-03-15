@@ -3,11 +3,17 @@
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "build": "gulp build"
+    "prepublishOnly": "npm run lint:fix && npm run build"
   },
   "repository": {
     "type": "git",
@@ -28,7 +34,8 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "gulp": "^4.0.0",
-    "gulp-babel": "^8.0.0"
+    "gulp-babel": "^8.0.0",
+    "vuepress": "^1.0.0-alpha.44"
   },
   "dependencies": {
     "@babel/runtime": "^7.3.4",

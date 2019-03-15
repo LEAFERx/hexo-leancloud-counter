@@ -1,9 +1,9 @@
 const AV = require('leancloud-storage');
 const _ = require('lodash');
-const inquirer = require('inquirer');
 const pathFn = require('path');
 const fs = require('fs');
 const log = require('./log');
+const { getMasterKey } = require('./util');
 
 function cmp(x, y) {
   if (x.url < y.url) return -1;
@@ -46,25 +46,15 @@ function postOperation(env, cnt, limit, newData, memoData) {
   }
 }
 
-const usernameQuestion = {
-  type: 'input',
-  name: 'username',
-  message: 'Enter your username: ',
-};
-
-const passwordQuestion = {
-  type: 'password',
-  name: 'password',
-  message: 'Enter your password: ',
-  mask: '*',
-};
-
 async function sync() {
   const { config } = this;
 
   if (config.leancloud_counter.enable_sync) {
     const APP_ID = config.leancloud_counter.app_id;
     const APP_KEY = config.leancloud_counter.app_key;
+    const MASTER_KEY = config.leancloud_counter.master_key
+      ? config.leancloud_counter.master_key
+      : await getMasterKey();
     const publicDir = this.public_dir;
     const urlsFile = pathFn.join(publicDir, 'leancloud_counter_post_list.json');
     const urls = JSON.parse(fs.readFileSync(urlsFile, 'utf8'));
@@ -72,29 +62,9 @@ async function sync() {
     AV.init({
       appId: APP_ID,
       appKey: APP_KEY,
+      masterKey: MASTER_KEY,
     });
-
-    const currentUser = AV.User.current();
-    if (!currentUser) {
-      let userName = config.leancloud_counter.username;
-      let passWord = config.leancloud_counter.password;
-      if (!userName) {
-        await inquirer.prompt([usernameQuestion, passwordQuestion])
-          .then((answers) => {
-            userName = answers.username;
-            passWord = answers.password;
-          });
-      } else if (!passWord) {
-        await inquirer.prompt([passwordQuestion])
-          .then((answers) => {
-            passWord = answers.password;
-          });
-      }
-      await (AV.User.logIn(userName, passWord).then(
-        (loginedUser) => { log.info(`Logined as: ${loginedUser.getUsername()}`); },
-        (error) => { log.error(error); },
-      ));
-    }
+    AV.Cloud.useMasterKey();
 
     log.info('Now syncing your posts list to leancloud counter...');
     const Counter = AV.Object.extend('Counter');
