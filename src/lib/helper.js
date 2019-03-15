@@ -8,8 +8,8 @@ function scriptHelper(layout) {
     () => swig.renderFile(path.join(__dirname, './helper-template/script.swig'),
       {
         layout,
-        api_id: config.leancloud_counter.app_id,
-        api_key: config.leancloud_counter.app_key,
+        app_id: config.leancloud_counter.app_id,
+        app_key: config.leancloud_counter.app_key,
         security: true,
       }),
   );
