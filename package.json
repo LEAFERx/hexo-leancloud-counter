@@ -1,6 +1,6 @@
 {
   "name": "hexo-leancloud-counter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -21,7 +21,7 @@
     "url": "git+https://github.com/LEAFERx/hexo-leancloud-counter.git"
   },
   "author": "LEAFERx <leaferx@outlook.com>",
-  "license": "MIT",
+  "license": "LGPL-3.0",
   "bugs": {
     "url": "https://github.com/LEAFERx/hexo-leancloud-counter/issues"
   },
