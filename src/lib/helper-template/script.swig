@@ -3,7 +3,6 @@
   function addCount(Counter) {
     var $visitors = $('.leancloud_visitors');
     var url = $visitors.attr('id').trim();
-    var title = $visitors.attr('data-flag-title').trim();
 
     Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
       .done(function({ results }) {
@@ -16,20 +15,9 @@
               console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
             })
         } else {
-          {% if security %}
-            var $element = $(document.getElementById(url));
-            $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
-            console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
-          {% else %}
-            Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
-              .done(function() {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(1);
-              })
-              .fail(function() {
-                console.log('Failed to create');
-              });
-          {% endif %}
+          var $element = $(document.getElementById(url));
+          $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+          console.error('ATTENTION! LeanCloud Counter is not initialized. See how to solve it here: https://github.com/theme-next/hexo-leancloud-counter.');
         }
       })
       .fail(function ({ responseJSON }) {
