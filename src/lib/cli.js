@@ -105,26 +105,12 @@ async function init() {
   });
   AV.Cloud.useMasterKey();
 
-  let questions;
-  let answers;
-
   if (!await createCounterClass()) return;
-
-  questions = [
-    {
-      type: 'confirm',
-      name: 'toContinue',
-      message: 'Continue?', // tbd
-      default: true,
-    },
-  ];
-  answers = await inquirer.prompt(questions);
-  if (!answers.toContinue) return;
 
   const puppeteer = await importPuppeteer();
   if (!puppeteer) return;
 
-  questions = [
+  const questions = [
     {
       type: 'input',
       name: 'email',
@@ -136,7 +122,7 @@ async function init() {
       mask: '*',
     },
   ];
-  answers = await inquirer.prompt(questions);
+  const answers = await inquirer.prompt(questions);
 
   log.info('Setting up class ACL for you. It may take some time...');
   const browser = await puppeteer.launch({
