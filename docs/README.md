@@ -2,10 +2,10 @@
 
 ## Prerequisites
 
+- Node.js >= 6.9.0
 - Hexo >= 3.0
-- Node >= 6.9.0
-- A [LeanCloud](https://leancloud.cn) account. Register one if not.
-- A [LeanCloud](https://leancloud.cn) application. Create one if not.
+- A [LeanCloud](https://leancloud.cn) account
+- A [LeanCloud](https://leancloud.cn) application
 
 ## Installation
 
@@ -74,8 +74,12 @@ And the plugin will just finish everything for you.
 
 See how to [Manually Setup ACL](./manuallysetup) if you cannot install Puppeteer or don't want to.
 
-## All done!
+## Sync your post list to LeanCloud
 
-LeanCloud Counter should work now.
+```sh
+hexo g && hexo d
+```
+
+## What's more?
 
 Checkout [Troubleshooting](./troubleshooting) if you meet any problems.
