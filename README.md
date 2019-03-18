@@ -38,10 +38,7 @@ Checkout [here](https://theme-next.github.io/hexo-leancloud-counter).
 
 ## Roadmap
 
-- [ ] Unit test.
-- [ ] Hot post feature.
-- [ ] Better deployer.
-- [ ] Post count manager.
+Moved to [#3](https://github.com/theme-next/hexo-leancloud-counter/issues/3).
 
 ## Supported Themes
 
