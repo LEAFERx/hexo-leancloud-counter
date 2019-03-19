@@ -91,6 +91,22 @@ See how to [Manually Setup ACL](./manuallysetup) if you cannot install Puppeteer
 hexo g && hexo d
 ```
 
+## Add hookguard to application
+
+Inside your application, click `cloud engine -> setting`, fill out `repository` option with `https://github.com/theme-next/hexo-leancloud-counter-hookguard.git` and click `save`.
+
+Then click `cloud engin -> deploy -> git deploy -> deploy`.
+
+The hookguard is successfully deployed when log print out `hookguard deployed`.
+
+::: tip Why hookguard is needed?
+The hookguard prevent invalid update (like decrease the count or even change record url) from malicious user.
+:::
+
+::: tip Note the limit of free LeanEngine
+The hookguard rely on LeanEngine. But we should be aware that free LeanEngin has use time limit and hibernate policy. See [LeanEngine Plan](https://leancloud.cn/docs/leanengine_plan.html#hash643734278) for details. So the Counter with hookguard deployed may be slow to response in some time when updating counts.
+:::
+
 ## What's more?
 
 Checkout [Troubleshooting](./troubleshooting) if you meet any problems.

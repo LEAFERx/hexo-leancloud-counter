@@ -20,7 +20,7 @@ npm install --save hexo-leancloud-counter
 
 前往 [LeanCloud 控制台](https://leancloud.cn/dashboard/) 创建一个应用。
 
-在应用界面里, 点击 `设置 -> 应用 key` 来获得你的 app id, app key 和 master key。
+在应用界面里，点击 `设置 -> 应用 key` 来获得你的 app id，app key 和 master key。
 
 根据 [LeanCloud 数据与安全指南](https://leancloud.cn/docs/data_security.html#hash532104796) 设置你的应用 Web 安全域名。
 
@@ -37,13 +37,13 @@ leancloud-counter:
   master_key: # (可选) master key
 ```
 
-::: tip 为什么该插件需要 master key
+::: tip 为什么该插件需要 master key？
 因为不正确的 ACL 设置，之前集成 LeanCloud Counter 的方法均有安全漏洞。
 为了解决这个问题，我们必须保证只有博主可以增删 Counter 中的文章条目。
 [hexo-leancloud-counter-security(DEPRECATED)](https://github.com/theme-next/hexo-leancloud-counter-security) 插件通过创建一个 admin 用户来解决这个问题，但这种方法十分复杂。使用 master key 可以使插件和插件的使用方法更加简单便捷。
 :::
 
-::: tip 如何确保 master key 的安全
+::: tip 如何确保 master key 的安全？
 该插件会通过以下三种途径获取 master key（优先级从高到低）：
 - 通过 `_config.yml`
 - 通过 `HEXO_LEANCLOUD_COUNTER_MASTER_KEY` 环境变量
@@ -84,13 +84,29 @@ hexo lc-counter init
 
 该插件即会设置好一切。
 
-如果你不能或不想安装 Puppeteer, 参见 [手动设置 ACL](./manuallysetup)。
+如果你不能或不想安装 Puppeteer，参见 [手动设置 ACL](./manuallysetup)。
 
 ## 将你的文章列表同步到 LeanCloud
 
 ```sh
 hexo g && hexo d
 ```
+
+## 为你的应用添加 hookguard
+
+在你的应用中，点击 `云引擎 -> 设置`，在 `代码库` 中填入 `https://github.com/theme-next/hexo-leancloud-counter-hookguard.git` 然后点击 `保存`。
+
+然后，点击 `云引擎 -> 部署 -> git 源码部署 -> 部署`。
+
+当日志打印出 `hookguard deployed`，hookguard 已经成功部署了。
+
+::: tip 为什么需要 hookguard？
+Hookguard 可以防止来自恶意用户的非法更新请求（比如减少统计数目以及甚至篡改记录的url）。
+:::
+
+::: tip 请注意免费版 LeanEngine 的限制
+Hookguard 依赖于 LeanEngine。但是，免费版 LeanEngine 有使用时间限制和休眠政策，详情可以查看 [LeanEngine Plan](https://leancloud.cn/docs/leanengine_plan.html#hash643734278)。所以，部署了 hookguard 的 Counter 在更新操作时可能会在某些时刻响应较慢。
+:::
 
 ## 更多
 
