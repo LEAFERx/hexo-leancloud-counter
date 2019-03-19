@@ -20,7 +20,7 @@ npm install --save hexo-leancloud-counter
 
 前往 [LeanCloud 控制台](https://leancloud.cn/dashboard/) 创建一个应用。
 
-在应用界面里, 点击 `设置 -> 应用 key` 来获得你的 app id, app key 和 master key.
+在应用界面里, 点击 `设置 -> 应用 key` 来获得你的 app id, app key 和 master key。
 
 根据 [LeanCloud 数据与安全指南](https://leancloud.cn/docs/data_security.html#hash532104796) 设置你的应用 Web 安全域名。
 
@@ -40,7 +40,7 @@ leancloud-counter:
 ::: tip 为什么该插件需要 master key
 因为不正确的 ACL 设置，之前集成 LeanCloud Counter 的方法均有安全漏洞。
 为了解决这个问题，我们必须保证只有博主可以增删 Counter 中的文章条目。
-[hexo-leancloud-counter-security(DEPRECATED)](https://github.com/theme-next/hexo-leancloud-counter-security) 插件通过创建一个 admin 用户来解决这个问题，但这种方法十分复杂。使用 master key 可以使插件和插件的使用方法更加简单便捷，
+[hexo-leancloud-counter-security(DEPRECATED)](https://github.com/theme-next/hexo-leancloud-counter-security) 插件通过创建一个 admin 用户来解决这个问题，但这种方法十分复杂。使用 master key 可以使插件和插件的使用方法更加简单便捷。
 :::
 
 ::: tip 如何确保 master key 的安全
@@ -74,7 +74,7 @@ deploy:
 如果应用是新建的，你需要等待应用完成初始化（大约 5 分钟）后才能创建类。
 :::
 
-该步骤需要安装 [Puppeteer](https://pptr.dev/). 不过, 如果没有安装，该插件会自动为你安装好。
+该步骤需要安装 [Puppeteer](https://pptr.dev/). 不过，如果没有安装，该插件会自动为你安装好。
 
 运行以下命令：
 
