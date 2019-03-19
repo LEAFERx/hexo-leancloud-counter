@@ -5,7 +5,6 @@
 - Node.js >= 6.9.0
 - Hexo >= 3.0
 - A [LeanCloud](https://leancloud.cn) account
-- A [LeanCloud](https://leancloud.cn) application
 
 ## Installation
 
@@ -16,6 +15,14 @@ You should install this plugin in your **blog** directory. Do not install it in 
 ```sh
 npm install --save hexo-leancloud-counter
 ```
+
+## Create a LeanCloud application
+
+Go to [LeanCloud Dashboard](https://leancloud.cn/dashboard/) and create an application.
+
+Inside your application, click `setting -> application key` and acquire your app id, app key and master key.
+
+Follow instruction [here](https://leancloud.cn/docs/data_security.html#hash532104796) to set up you domain whitelist.
 
 ## Configuration
 
@@ -61,6 +68,10 @@ deploy:
 ## Create Counter class
 
 Skip this step if you already have one.
+
+::: tip
+You need to wait for about 5 mins after you have created a new application to create classes.
+:::
 
 This step requires [Puppeteer](https://pptr.dev/). But don't worry, the plugin will automaticly install it for you if none is installed.
 

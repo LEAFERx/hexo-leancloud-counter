@@ -5,7 +5,6 @@
 - Node.js >= 6.9.0
 - Hexo >= 3.0
 - 一个 [LeanCloud](https://leancloud.cn) 账号
-- 一个 [LeanCloud](https://leancloud.cn) 应用
 
 ## 安装
 
@@ -16,6 +15,15 @@
 ```sh
 npm install --save hexo-leancloud-counter
 ```
+
+## 创建 LeanCloud 应用
+
+前往 [LeanCloud 控制台](https://leancloud.cn/dashboard/) 创建一个应用。
+
+在应用界面里, 点击 `设置 -> 应用 key` 来获得你的 app id, app key 和 master key.
+
+根据 [LeanCloud 数据与安全指南](https://leancloud.cn/docs/data_security.html#hash532104796) 设置你的应用 Web 安全域名。
+
 
 ## 配置
 
@@ -61,6 +69,10 @@ deploy:
 ## 创建 Counter 类
 
 如果 Counter 类已经创建，请跳过该步骤。
+
+::: tip
+如果应用是新建的，你需要等待应用完成初始化（大约 5 分钟）后才能创建类。
+:::
 
 该步骤需要安装 [Puppeteer](https://pptr.dev/). 不过, 如果没有安装，该插件会自动为你安装好。
 
