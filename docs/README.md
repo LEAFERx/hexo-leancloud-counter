@@ -83,6 +83,10 @@ hexo lc-counter init
 
 And the plugin will just finish everything for you.
 
+::: tip
+You can just uninstall Puppeteer now, it's only used in this step.
+:::
+
 See how to [Manually Setup ACL](./manuallysetup) if you cannot install Puppeteer or don't want to.
 
 ## Sync your post list to LeanCloud

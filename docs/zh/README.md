@@ -84,6 +84,10 @@ hexo lc-counter init
 
 该插件即会设置好一切。
 
+::: tip
+Puppeteer 只在这个步骤被用到，所以你现在完全可以卸载它。
+:::
+
 如果你不能或不想安装 Puppeteer，参见 [手动设置 ACL](./manuallysetup)。
 
 ## 将你的文章列表同步到 LeanCloud
