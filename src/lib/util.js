@@ -1,6 +1,29 @@
+import chalk from 'chalk';
 import inquirer from 'inquirer';
 
-async function getMasterKey() {
+const { log } = console;
+
+function info(msg) {
+  log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgWhite('INFO')} ${msg}`);
+}
+
+function warn(msg) {
+  log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgYellow('WARN')} ${msg}`);
+}
+
+function error(msg) {
+  log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgRed('ERR!')} ${msg}`);
+}
+
+const customLog = {
+  info,
+  warn,
+  error,
+};
+
+export { customLog as log };
+
+export async function getMasterKey() {
   if (process.env.HEXO_LEANCLOUD_COUNTER_MASTER_KEY) {
     return process.env.HEXO_LEANCLOUD_COUNTER_MASTER_KEY;
   }
@@ -14,7 +37,3 @@ async function getMasterKey() {
   const answers = await inquirer.prompt(questions);
   return answers.masterKey;
 }
-
-export {
-  getMasterKey,
-};

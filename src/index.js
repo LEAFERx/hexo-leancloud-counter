@@ -1,5 +1,5 @@
-import { generator } from './lib/generator';
-import { sync } from './lib/deployer';
+import generator from './lib/generator';
+import sync from './lib/sync';
 import { commandOptions, commandFunc } from './lib/cli';
 import { scriptHelper, legacyScriptHelper } from './lib/helper';
 

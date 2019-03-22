@@ -1,12 +1,12 @@
 import AV from 'leancloud-storage';
 import inquirer from 'inquirer';
 import spawn from 'cross-spawn';
-import { description as pkgDesc } from '../../package.json';
-import log from './log';
-import { getMasterKey } from './util';
+import { log, getMasterKey } from './util';
+
+const pkg = require('../../package.json');
 
 const commandOptions = {
-  desc: pkgDesc,
+  desc: pkg.description,
   usage: '<argument>',
   arguments: [
     {

@@ -10,9 +10,7 @@ module.exports = {
     SharedArrayBuffer: 'readonly',
     hexo: 'readonly',
   },
-  parserOptions: {
-    ecmaVersion: 2018,
-  },
+  parser: 'babel-eslint',
   rules: {
   },
 };

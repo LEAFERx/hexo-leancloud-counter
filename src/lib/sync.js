@@ -2,8 +2,7 @@ import AV from 'leancloud-storage';
 import _ from 'lodash';
 import path from 'path';
 import fs from 'fs';
-import log from './log';
-import { getMasterKey } from './util';
+import { log, getMasterKey } from './util';
 
 function cmp(x, y) {
   if (x.url < y.url) return -1;
@@ -46,7 +45,7 @@ function postOperation(env, cnt, limit, newData, memoData) {
   }
 }
 
-async function sync() {
+export default async function sync() {
   const { config } = this;
 
   if (config.leancloud_counter.enable) {
@@ -135,7 +134,3 @@ async function sync() {
     });
   }
 }
-
-export {
-  sync,
-};

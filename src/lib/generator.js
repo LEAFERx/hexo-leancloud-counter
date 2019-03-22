@@ -1,4 +1,4 @@
-function generator(locals) {
+export default function generator(locals) {
   const { config } = this;
   if (config.leancloud_counter.enable) {
     const path = 'leancloud_counter_post_list.json';
@@ -15,7 +15,3 @@ function generator(locals) {
   }
   return null;
 }
-
-export {
-  generator,
-};

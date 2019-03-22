@@ -1,15 +1,92 @@
+const fs = require('fs');
+
 const gulp = require('gulp');
-const babel = require('gulp-babel');
+const through = require('through2');
+const swig = require('swig-templates');
 
-gulp.task('babel', () => {
-  return gulp.src('src/**/*.js')
-             .pipe(babel())
-             .pipe(gulp.dest('dist'));
+const rollup = require('rollup');
+const babel = require('rollup-plugin-babel');
+const { terser } = require('rollup-plugin-terser');
+
+const { dependencies } = require('./package.json');
+
+gulp.task('rollup', async () => {
+  const bundle = await rollup.rollup({
+    input: 'src/index.js',
+    plugins: [
+      babel({
+        runtimeHelpers: true,
+      }),
+    ],
+    external(name) {
+      // no need to bundle dependencies
+      return [
+        'fs',
+        'path',
+      ].includes(name)
+      || name in dependencies
+      || name.startsWith('@babel/runtime');
+    },
+  });
+
+  await Promise.all([
+    bundle.write({
+      file: 'dist/index.js',
+      format: 'cjs',
+    }),
+    bundle.write({
+      file: 'dist/index.esm.js',
+      format: 'es',
+    }),
+  ]);
 });
 
-gulp.task('copy-template', () => {
-  return gulp.src('src/**/*.swig')
-             .pipe(gulp.dest('dist'));
+gulp.task('rollup-LeanCounter', async () => {
+  const bundle = await rollup.rollup({
+    input: 'src/static/LeanCounter.js',
+    plugins: [
+      babel({
+        babelrc: false,
+        presets: [
+          [
+            "@babel/preset-env",
+            {
+              modules: false,
+            },
+          ],
+        ],
+      }),
+      terser(),
+    ],
+  });
+
+  await bundle.write({
+    file: 'dist/static/LeanCounter.js',
+    format: 'iife',
+    name: 'LeanCounter',
+  });
 });
 
-gulp.task('build', gulp.parallel('babel', 'copy-template'));
+gulp.task('copy-templates', () => {
+  const LeanCounter = fs.readFileSync('dist/static/LeanCounter.js').toString();
+  return gulp.src('src/template/*.swig')
+             .pipe(through.obj((file, _, cb) => {
+               if (file.isBuffer() && file.path.endsWith('.swig')) {
+                 const contents = file.contents.toString()
+                                    .replace('__inject_LeanCounter__', LeanCounter);
+                 file.contents = Buffer.from(contents);
+               }
+               cb(null, file);
+             }))
+             .pipe(gulp.dest('dist/template/'));
+});
+
+gulp.task('build',
+  gulp.parallel(
+    'rollup',
+    gulp.series(
+      'rollup-LeanCounter',
+      'copy-templates',
+    ),
+  ),
+);
