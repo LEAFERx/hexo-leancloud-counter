@@ -3,10 +3,8 @@ import inquirer from 'inquirer';
 import spawn from 'cross-spawn';
 import { log, getMasterKey } from './util';
 
-const pkg = require('../../package.json');
-
 const commandOptions = {
-  desc: pkg.description,
+  desc: 'LeanCloud Counter CLI',
   usage: '<argument>',
   arguments: [
     {
