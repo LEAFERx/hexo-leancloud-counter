@@ -1,5 +1,5 @@
-const path = require('path');
-const swig = require('swig-templates');
+import path from 'path';
+import swig from 'swig-templates';
 
 function legacyScriptHelper(layout) {
   const { config } = this;
@@ -26,7 +26,7 @@ function scriptHelper(layout) {
   );
 }
 
-module.exports = {
+export {
   scriptHelper,
   legacyScriptHelper,
 };

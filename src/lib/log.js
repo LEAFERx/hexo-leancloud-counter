@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 
 const { log } = console;
 
@@ -14,7 +14,7 @@ function error(msg) {
   log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgRed('ERR!')} ${msg}`);
 }
 
-module.exports = {
+export default {
   info,
   warn,
   error,

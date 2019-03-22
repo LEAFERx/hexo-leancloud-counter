@@ -1,26 +1,13 @@
-const {
-  generator,
-} = require('./lib/generator');
+import { generator } from './lib/generator';
+import { sync } from './lib/deployer';
+import { commandOptions, commandFunc } from './lib/cli';
+import { scriptHelper, legacyScriptHelper } from './lib/helper';
 
 hexo.extend.generator.register('leancloud_counter_generator', generator);
 
-const {
-  sync,
-} = require('./lib/deployer');
-
 hexo.extend.deployer.register('leancloud_counter_sync', sync);
 
-const {
-  commandOptions,
-  commandFunc,
-} = require('./lib/cli');
-
 hexo.extend.console.register('lc-counter', 'hexo-leancloud-counter', commandOptions, commandFunc);
-
-const {
-  scriptHelper,
-  legacyScriptHelper,
-} = require('./lib/helper');
 
 hexo.extend.helper.register('leancloud_counter_script', scriptHelper);
 hexo.extend.helper.register('leancloud_counter_legacy_script', legacyScriptHelper);

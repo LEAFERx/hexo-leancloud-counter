@@ -1,4 +1,4 @@
-const inquirer = require('inquirer');
+import inquirer from 'inquirer';
 
 async function getMasterKey() {
   if (process.env.HEXO_LEANCLOUD_COUNTER_MASTER_KEY) {
@@ -15,6 +15,6 @@ async function getMasterKey() {
   return answers.masterKey;
 }
 
-module.exports = {
+export {
   getMasterKey,
 };

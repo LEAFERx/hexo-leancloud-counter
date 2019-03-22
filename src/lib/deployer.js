@@ -1,9 +1,9 @@
-const AV = require('leancloud-storage');
-const _ = require('lodash');
-const pathFn = require('path');
-const fs = require('fs');
-const log = require('./log');
-const { getMasterKey } = require('./util');
+import AV from 'leancloud-storage';
+import _ from 'lodash';
+import path from 'path';
+import fs from 'fs';
+import log from './log';
+import { getMasterKey } from './util';
 
 function cmp(x, y) {
   if (x.url < y.url) return -1;
@@ -16,7 +16,7 @@ function postOperation(env, cnt, limit, newData, memoData) {
     newData.sort(cmp);
     const sourceDir = env.source_dir;
     const publicDir = env.public_dir;
-    const memoFile = pathFn.join(sourceDir, 'leancloud.memo');
+    const memoFile = path.join(sourceDir, 'leancloud.memo');
     fs.writeFileSync(memoFile, '[\n');
 
     let memoIdx = 1;
@@ -37,8 +37,8 @@ function postOperation(env, cnt, limit, newData, memoData) {
     }
     fs.writeFileSync(memoFile, memoData[memoIdx], { flag: 'a' });
 
-    const srcFile = pathFn.join(sourceDir, 'leancloud.memo');
-    const destFile = pathFn.join(publicDir, 'leancloud.memo');
+    const srcFile = path.join(sourceDir, 'leancloud.memo');
+    const destFile = path.join(publicDir, 'leancloud.memo');
     const readStream = fs.createReadStream(srcFile);
     const writeStream = fs.createWriteStream(destFile);
     readStream.pipe(writeStream);
@@ -56,7 +56,7 @@ async function sync() {
       ? config.leancloud_counter.master_key
       : await getMasterKey();
     const publicDir = this.public_dir;
-    const urlsFile = pathFn.join(publicDir, 'leancloud_counter_post_list.json');
+    const urlsFile = path.join(publicDir, 'leancloud_counter_post_list.json');
     const urls = JSON.parse(fs.readFileSync(urlsFile, 'utf8'));
 
     AV.init({
@@ -69,7 +69,7 @@ async function sync() {
     log.info('Now syncing your posts list to leancloud counter...');
     const Counter = AV.Object.extend('Counter');
     urls.sort(cmp);
-    const memoFile = pathFn.join(publicDir, 'leancloud.memo');
+    const memoFile = path.join(publicDir, 'leancloud.memo');
     if (!fs.existsSync(memoFile)) {
       fs.writeFileSync(memoFile, '[\n]');
     }
@@ -136,6 +136,6 @@ async function sync() {
   }
 }
 
-module.exports = {
+export {
   sync,
 };

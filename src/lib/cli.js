@@ -1,12 +1,12 @@
-const AV = require('leancloud-storage');
-const inquirer = require('inquirer');
-const spawn = require('cross-spawn');
-const packageInfo = require('../../package.json');
-const log = require('./log');
-const { getMasterKey } = require('./util');
+import AV from 'leancloud-storage';
+import inquirer from 'inquirer';
+import spawn from 'cross-spawn';
+import { description as pkgDesc } from '../../package.json';
+import log from './log';
+import { getMasterKey } from './util';
 
 const commandOptions = {
-  desc: packageInfo.description,
+  desc: pkgDesc,
   usage: '<argument>',
   arguments: [
     {
@@ -58,7 +58,7 @@ async function installPuppeteer(installFlag) {
     });
     await promise;
     // eslint-disable-next-line global-require, import/no-unresolved
-    return require('puppeteer');
+    return import('puppeteer');
   } catch (err) {
     log.error(err);
     log.error('Still can not import puppeteer. Exiting now...');
@@ -69,7 +69,7 @@ async function installPuppeteer(installFlag) {
 async function importPuppeteer() {
   try {
     // eslint-disable-next-line global-require, import/no-unresolved
-    return require('puppeteer');
+    return import('puppeteer');
   } catch (err) {
     log.warn('Oops! Seems like puppeteer is not installed.');
     const questions = [{
@@ -191,7 +191,7 @@ function commandFunc(args) {
   }
 }
 
-module.exports = {
+export {
   commandOptions,
   commandFunc,
 };

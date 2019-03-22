@@ -16,6 +16,6 @@ function generator(locals) {
   return null;
 }
 
-module.exports = {
+export {
   generator,
 };
