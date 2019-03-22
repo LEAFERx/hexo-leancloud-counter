@@ -8,8 +8,8 @@ function legacyScriptHelper(layout) {
     () => swig.renderFile(path.join(__dirname, './template/legacyScript.swig'),
       {
         layout,
-        app_id: config.leancloud_counter.app_id,
-        app_key: config.leancloud_counter.app_key,
+        appId: config.leancloud_counter.app_id,
+        appKey: config.leancloud_counter.app_key,
       }),
   );
 }
@@ -20,8 +20,8 @@ function scriptHelper() {
     'leancloud-counter-script',
     () => swig.renderFile(path.join(__dirname, './template/mainScript.swig'),
       {
-        app_id: config.leancloud_counter.app_id,
-        app_key: config.leancloud_counter.app_key,
+        appId: config.leancloud_counter.app_id,
+        appKey: config.leancloud_counter.app_key,
       }),
   );
 }

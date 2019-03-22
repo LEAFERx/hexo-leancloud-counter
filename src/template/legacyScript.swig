@@ -66,15 +66,15 @@
   {% endif %}
 
   $(function() {
-    $.get('https://app-router.leancloud.cn/2/route?appId={{ app_id }}')
+    $.get('https://app-router.leancloud.cn/2/route?appId={{ appId }}')
       .done(function({ api_server }) {
         var Counter = function(method, url, data) {
           return $.ajax({
             method: method,
             url: 'https://' + api_server + '/1.1' + url,
             headers: {
-              'X-LC-Id': '{{ app_id }}',
-              'X-LC-Key': '{{ app_key }}',
+              'X-LC-Id': '{{ appId }}',
+              'X-LC-Key': '{{ appKey }}',
               'Content-Type': 'application/json',
             },
             data: data
