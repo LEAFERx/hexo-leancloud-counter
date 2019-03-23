@@ -6,6 +6,8 @@ const swig = require('swig-templates');
 
 const rollup = require('rollup');
 const babel = require('rollup-plugin-babel');
+const cjs = require('rollup-plugin-commonjs');
+const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 
 const { dependencies } = require('./package.json');
@@ -46,16 +48,10 @@ gulp.task('rollup-LeanCounter', async () => {
     input: 'src/static/LeanCounter.js',
     plugins: [
       babel({
-        babelrc: false,
-        presets: [
-          [
-            "@babel/preset-env",
-            {
-              modules: false,
-            },
-          ],
-        ],
+        runtimeHelpers: true
       }),
+      cjs(),
+      resolve(),
       terser(),
     ],
   });

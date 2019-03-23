@@ -5,7 +5,7 @@ export default class LeanCounter {
   constructor({
     appId,
     appKey,
-    elementClass = '.leancould-counter',
+    elementClass = '.leancloud-counter',
     addCountInterval = 100,
     base = '/1.1/classes/Counter',
     initOnLoaded = true,
@@ -48,7 +48,7 @@ export default class LeanCounter {
       });
       return response.json();
     }
-    const response = fetch(`https://${this.apiServer}${this.base}${route}`, {
+    const response = await fetch(`https://${this.apiServer}${this.base}${route}`, {
       method,
       headers: {
         'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export default class LeanCounter {
   async addCount(url) {
     this._addCountUrlQueue.push(url);
     if (!this._addCountIntervalId) {
-      this._addCountIntervalId = setInterval(this._addCount, this.addCountInterval);
+      this._addCountIntervalId = setInterval(this._addCount.bind(this), this.addCountInterval);
     }
   }
 
