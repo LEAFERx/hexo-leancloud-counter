@@ -7,7 +7,10 @@ Use tags in your source file (e.g. markdown) and use helpers in your templates (
 ## Tag: leanCounter
 
 ```markdown
-{{ leanCounter [url, [action]] }}
+{{ leanCounter }}
+{{ leanCounter url:[url] }}
+{{ leanCounter action:[action] }}
+{{ leanCounter element:[element] }}
 ```
 
 This tag is useful when you want to show some specific counters in your post.
@@ -16,31 +19,27 @@ This tag is useful when you want to show some specific counters in your post.
 
 - `url` optional
 
-  If not set, the url of the file will be used and `action` will set to `inc`.
+  If not set, the url of the file in Hexo will be used
 
-  ```markdown
-  {{ leanCounter }}
-  ```
-
-  will get
-
-  ```html
-  <span class="leancloud-counter" data-leancloud-counter-url="/path/of/your/file/" data-leancloud-counter-inc>
-  ```
-
-- `action` optional; require: `url`
+- `action` optional
   
   If set to `inc`, LeanCloud Counter will automaticly increase this counter when page is load.
 
-  ```markdown
-  {{ leanCounter /some/url/ inc }}
-  ```
+- `element` optional
 
-  will get
+  The HTML element the counter uses.
 
-  ```html
-  <span class="leancloud-counter" data-leancloud-counter-url="/some/url/" data-leancloud-counter-inc>
-  ```
+### Example
+
+```markdown
+{{ leanCounter url:/some/url/ action:inc }}
+```
+
+will get
+
+```html
+<span class="leancloud-counter" data-leancloud-counter-url="/some/url/" data-leancloud-counter-inc>
+```
 
 ## Helper: leancloud\_counter\_script
 
@@ -53,22 +52,20 @@ This outputs the LeanCloud Counter script.
 ## Helper: leancloud\_counter
 
 ```ejs
-<%- leancloud_counter([url], [action], [element]) -%>
+<%- leancloud_counter([action], [url], [element]) -%>
 ```
 
 This outputs the same as the leanCounter tag.
 
 ### Arguments
 
-- `url` optional; type: `String`
-  
-  If not set, `this.path` will be used and `action` will be set to `'inc'`.
-
-  You can simply leave `url` and `action` blanked if it is the counter for the current page / post.
-
-- `action` optional; type: `String`; value: `'inc' | undefined`; require: `url`
+- `action` optional; type: `String`; value: `'inc' | ''`; default: `''`
   
   If set `inc`, LeanCloud Counter will automaticly increase this counter when page is load.
+
+- `url` optional; type: `String`; default: `this.path`
+  
+  The url of counter.
 
 - `element` optional; type: `String`; default: `'span'`
 

@@ -7,7 +7,10 @@
 ## Tag: leanCounter
 
 ```markdown
-{{ leanCounter [url, [action]] }}
+{{ leanCounter }}
+{{ leanCounter url:[url] }}
+{{ leanCounter action:[action] }}
+{{ leanCounter element:[element] }}
 ```
 
 这个标签可用于当你想在某些文章中显示某个计数器时。
@@ -16,31 +19,27 @@
 
 - `url` 可选
 
-  如果未设置，此文件在 hexo 中的路径会被使用，并且 `action` 会被设置为 `inc`。
+  如果未设置，此文件在 hexo 中的路径会被使用.
 
-  ```markdown
-  {{ leanCounter }}
-  ```
-
-  生成
-
-  ```html
-  <span class="leancloud-counter" data-leancloud-counter-url="/path/of/your/file/" data-leancloud-counter-inc>
-  ```
-
-- `action` 可选；需要：`url`
+- `action` 可选
   
   如果设置成 `inc`, LeanCloud Counter 在网页载入的时候会自动增加这个计数器。
 
-  ```markdown
-  {{ leanCounter /some/url/ inc }}
-  ```
+- `element` 可选
 
-  生成
+  这个 Counter 使用的 HTML 元素。
 
-  ```html
-  <span class="leancloud-counter" data-leancloud-counter-url="/some/url/" data-leancloud-counter-inc>
-  ```
+### 示例
+
+```markdown
+{{ leanCounter url:/some/url/ action:inc }}
+```
+
+将会渲染为
+
+```html
+<span class="leancloud-counter" data-leancloud-counter-url="/some/url/" data-leancloud-counter-inc>
+```
 
 ## Helper: leancloud\_counter\_script
 
@@ -53,22 +52,20 @@
 ## Helper: leancloud\_counter
 
 ```ejs
-<%- leancloud_counter([url], [action], [element]) -%>
+<%- leancloud_counter([action], [url], [element]) -%>
 ```
 
 输出与 leanCounter 标签类似。
 
 ### 参数
 
-- `url` 可选；类型：`String`
-  
-  如果没有设置，`this.path` 会被使用，并且 `action` 会被设置成 `inc`。
-
-  如果这个计数器是当前页面的浏览量计数器，你只需要将 `url` 和 `action` 留空。
-
-- `action` 可选；类型：`String`; 可选值: `'inc' | undefined`; 需要：`url`
+- `action` 可选；类型：`String`; 可选值: `'inc' | ''`; 默认：`''`
   
   如果设置成 `inc`, LeanCloud Counter 在网页载入的时候会自动增加这个计数器。
+
+- `url` 可选；类型：`String`; 默认: `this.path`
+
+  计数器的 url。
 
 - `element` 可选；类型：`String`; 默认: `'span'`
 

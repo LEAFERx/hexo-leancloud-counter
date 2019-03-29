@@ -26,12 +26,6 @@ export function scriptHelper() {
   );
 }
 
-export function counterHelper(url, action, element = 'span') {
-  if (!url) {
-    /* eslint-disable no-param-reassign */
-    url = `/${this.path.replace('index.html', '')}`;
-    action = action || 'inc';
-    /* eslint-enable no-param-reassign */
-  }
+export function counterHelper(action = '', url = `/${this.path.replace('index.html', '')}`, element = 'span') {
   return `<${element} class="leancloud-counter" data-leancloud-counter-url="${url}" ${action ? `data-leancloud-counter-${action}` : ''}></${element}>`;
 }
