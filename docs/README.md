@@ -115,7 +115,7 @@ The hookguard rely on LeanEngine. But we should be aware that free LeanEngin has
 
 Add `<%- leancloud_counter_script() %>` to your template to render LeanCloud Counter script.
 
-Add `<%- leancloud_counter('inc') %>` to pages that you want to count.
+Add `<%- leancloud_counter({ action:'inc' }) %>` to pages that you want to count.
 
 Bloggers can also use `leanCounter` tag to show some counters in specific posts.
 

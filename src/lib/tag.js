@@ -10,5 +10,5 @@ export default function counterTag(args) {
     }
   });
 
-  return counterHelper(options.action, options.url, options.element);
+  return counterHelper.call(this, options);
 }

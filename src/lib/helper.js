@@ -26,6 +26,10 @@ export function scriptHelper() {
   );
 }
 
-export function counterHelper(action = '', url = `/${this.path.replace('index.html', '')}`, element = 'span') {
+export function counterHelper({
+  action = '',
+  url = `/${this.path.replace('index.html', '')}`,
+  element = 'span',
+} = {}) {
   return `<${element} class="leancloud-counter" data-leancloud-counter-url="${url}" ${action ? `data-leancloud-counter-${action}` : ''}></${element}>`;
 }

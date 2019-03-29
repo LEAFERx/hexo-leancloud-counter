@@ -52,7 +52,11 @@ This outputs the LeanCloud Counter script.
 ## Helper: leancloud\_counter
 
 ```ejs
-<%- leancloud_counter([action], [url], [element]) -%>
+<%- leancloud_counter({
+  action: '',
+  url: this.path,
+  element: 'span'
+}) -%>
 ```
 
 This outputs the same as the leanCounter tag.
