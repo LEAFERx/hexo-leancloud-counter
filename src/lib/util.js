@@ -1,27 +1,19 @@
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 
-const { log } = console;
+const { log: sysLog } = console;
 
-function info(msg) {
-  log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgWhite('INFO')} ${msg}`);
-}
-
-function warn(msg) {
-  log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgYellow('WARN')} ${msg}`);
-}
-
-function error(msg) {
-  log(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgRed('ERR!')} ${msg}`);
-}
-
-const customLog = {
-  info,
-  warn,
-  error,
+export const log = {
+  info(msg) {
+    sysLog(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgWhite('INFO')} ${msg}`);
+  },
+  warn(msg) {
+    sysLog(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgYellow('WARN')} ${msg}`);
+  },
+  error(msg) {
+    sysLog(`${chalk.cyan('[hexo-leancloud-counter]')} ${chalk.black.bgRed('ERR!')} ${msg}`);
+  },
 };
-
-export { customLog as log };
 
 export async function getMasterKey() {
   if (process.env.HEXO_LEANCLOUD_COUNTER_MASTER_KEY) {

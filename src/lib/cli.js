@@ -3,17 +3,6 @@ import inquirer from 'inquirer';
 import spawn from 'cross-spawn';
 import { log, getMasterKey } from './util';
 
-const commandOptions = {
-  desc: 'LeanCloud Counter CLI',
-  usage: '<argument>',
-  arguments: [
-    {
-      name: 'init | i',
-      desc: 'Automatic setup Counter class for you',
-    },
-  ],
-};
-
 async function createCounterClass() {
   // Try create the Counter class by creating a test object
   try {
@@ -177,7 +166,18 @@ async function init() {
   log.info('All set!');
 }
 
-function commandFunc(args) {
+export const commandOptions = {
+  desc: 'LeanCloud Counter CLI',
+  usage: '<argument>',
+  arguments: [
+    {
+      name: 'init | i',
+      desc: 'Automatic setup Counter class for you',
+    },
+  ],
+};
+
+export function commandFunc(args) {
   if (args._[0] === 'init' || args._[0] === 'i') {
     if (args._.length !== 1) {
       log.error('Too Many Arguments.');
@@ -188,8 +188,3 @@ function commandFunc(args) {
     log.error('Unknown Command.');
   }
 }
-
-export {
-  commandOptions,
-  commandFunc,
-};

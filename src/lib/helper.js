@@ -1,7 +1,7 @@
 import path from 'path';
 import swig from 'swig-templates';
 
-function legacyScriptHelper(layout) {
+export function legacyScriptHelper(layout) {
   const { config } = this;
   return this.fragment_cache(
     `leancloud-counter-legacy-script-${layout}`,
@@ -14,7 +14,7 @@ function legacyScriptHelper(layout) {
   );
 }
 
-function scriptHelper() {
+export function scriptHelper() {
   const { config } = this;
   return this.fragment_cache(
     'leancloud-counter-script',
@@ -26,7 +26,12 @@ function scriptHelper() {
   );
 }
 
-export {
-  scriptHelper,
-  legacyScriptHelper,
-};
+export function counterHelper(url, inc, element = 'span') {
+  if (!url) {
+    /* eslint-disable no-param-reassign */
+    url = `/${this.path.replace('index.html', '')}`;
+    inc = true;
+    /* eslint-enable no-param-reassign */
+  }
+  return `<${element} class="leancloud-counter" data-leancloud-counter-url="${url}" ${inc ? 'data-leancloud-counter-inc' : ''}></${element}>`;
+}
