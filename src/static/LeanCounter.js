@@ -22,7 +22,7 @@ export default function LeanCounter({
     if (document.readyState !== 'loading') {
       this.init();
     } else {
-      document.addEventListener('DOMContentLoaded', this.init);
+      document.addEventListener('DOMContentLoaded', this.init.bind(this));
     }
   }
 }
