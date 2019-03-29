@@ -114,12 +114,15 @@ Hookguard 依赖于 LeanEngine。但是，免费版 LeanEngine 有使用时间�
 
 ## 集成到你的主题
 
+::: tip
+如果你的主题已经集成了这个插件，请根据你主题的文档开启。
+:::
+
 把 `<%- leancloud_counter_script() %>` 加入你的全局模板中以渲染 LeanCloud Counter 脚本。
 
 把 `<%- leancloud_counter({ action: 'inc' }) %>` 加入你希望计数的页面模板中。
 
 博主也可以在某些源文件中使用 `leanCounter` 标签以手动渲染某些计数器。
-
 
 参见 [标签（Tags）与辅助函数（Helpers）](./tagsandhelpers) 以获得更多细节。
 

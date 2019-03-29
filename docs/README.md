@@ -113,6 +113,10 @@ The hookguard rely on LeanEngine. But we should be aware that free LeanEngin has
 
 ## Integrate to your theme
 
+::: tip
+If your theme has already integrated this plugin, follow instructions from your theme.
+:::
+
 Add `<%- leancloud_counter_script() %>` to your template to render LeanCloud Counter script.
 
 Add `<%- leancloud_counter({ action:'inc' }) %>` to pages that you want to count.
