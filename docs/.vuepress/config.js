@@ -30,6 +30,7 @@ module.exports = {
             collapsable: false,
             children: [
               ['/', 'Quick Start'],
+              'tagsandhelpers',
               '/troubleshooting',
               '/manuallysetup',
             ],
@@ -52,6 +53,7 @@ module.exports = {
             collapsable: false,
             children: [
               ['/zh/', '快速开始'],
+              '/zh/tagsandhelpers',
               '/zh/troubleshooting',
               '/zh/manuallysetup',
             ],

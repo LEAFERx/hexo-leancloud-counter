@@ -26,12 +26,12 @@ export function scriptHelper() {
   );
 }
 
-export function counterHelper(url, inc, element = 'span') {
+export function counterHelper(url, action, element = 'span') {
   if (!url) {
     /* eslint-disable no-param-reassign */
     url = `/${this.path.replace('index.html', '')}`;
-    inc = true;
+    action = action || 'inc';
     /* eslint-enable no-param-reassign */
   }
-  return `<${element} class="leancloud-counter" data-leancloud-counter-url="${url}" ${inc ? 'data-leancloud-counter-inc' : ''}></${element}>`;
+  return `<${element} class="leancloud-counter" data-leancloud-counter-url="${url}" ${action ? `data-leancloud-counter-${action}` : ''}></${element}>`;
 }

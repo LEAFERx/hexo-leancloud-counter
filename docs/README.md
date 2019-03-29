@@ -111,6 +111,16 @@ The hookguard prevent invalid update (like decrease the count or even change rec
 The hookguard rely on LeanEngine. But we should be aware that free LeanEngin has use time limit and hibernate policy. See [LeanEngine Plan](https://leancloud.cn/docs/leanengine_plan.html#hash643734278) for details. So the Counter with hookguard deployed may be slow to response in some time when updating counts.
 :::
 
+## Integrate to your theme
+
+Add `<%- leancloud_counter_script() %>` to your template to render LeanCloud Counter script.
+
+Add `<%- leancloud_counter() %>` to pages that you want to count.
+
+Bloggers can also use `leanCounter` tag to show some counters in specific posts.
+
+For details, checkout [Tags & Helpers](./tagsandhelpers).
+
 ## What's more?
 
 Checkout [Troubleshooting](./troubleshooting) if you meet any problems.

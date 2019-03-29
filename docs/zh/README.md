@@ -112,6 +112,17 @@ Hookguard 可以防止来自恶意用户的非法更新请求（比如减少统�
 Hookguard 依赖于 LeanEngine。但是，免费版 LeanEngine 有使用时间限制和休眠政策，详情可以查看 [LeanEngine Plan](https://leancloud.cn/docs/leanengine_plan.html#hash643734278)。所以，部署了 hookguard 的 Counter 在更新操作时可能会在某些时刻响应较慢。
 :::
 
+## 集成到你的主题
+
+把 `<%- leancloud_counter_script() %>` 加入你的全局模板中以渲染 LeanCloud Counter 脚本。
+
+把 `<%- leancloud_counter() %>` 加入你希望计数的页面模板中。
+
+博主也可以在某些源文件中使用 `leanCounter` 标签以手动渲染某些计数器。
+
+
+参见 [标签（Tags）与辅助函数（Helpers）](./tagsandhelpers) 以获得更多细节。
+
 ## 更多
 
-参见 [常见问题](./troubleshooting) 如果你遇到问题。
+参见 [常见问题](./troubleshooting) 以解决常见的问题。
