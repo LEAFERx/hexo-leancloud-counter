@@ -29,7 +29,7 @@ Follow instruction [here](https://leancloud.cn/docs/data_security.html#hash53210
 Put these options into `_config.yml`:
 
 ```yaml
-leancloud-counter:
+leancloud_counter:
   enable: true
   app_id: # app id
   app_key: # app key

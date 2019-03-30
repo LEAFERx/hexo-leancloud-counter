@@ -30,7 +30,7 @@ npm install --save hexo-leancloud-counter
 将以下配置写入 `_config.yml`:
 
 ```yaml
-leancloud-counter:
+leancloud_counter:
   enable: true
   app_id: # app id
   app_key: # app key
