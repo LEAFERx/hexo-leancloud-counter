@@ -17,7 +17,7 @@
         } else {
           var $element = $(document.getElementById(url));
           $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
-          console.error('ATTENTION! LeanCloud Counter is not initialized. See how to solve it here: https://github.com/theme-next/hexo-leancloud-counter.');
+          console.error('ATTENTION! LeanCloud Counter is not initialized. See how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security.');
         }
       })
       .fail(function ({ responseJSON }) {

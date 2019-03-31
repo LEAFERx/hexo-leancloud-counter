@@ -39,7 +39,7 @@ leancloud_counter:
 ::: tip Why this plugin need master key?
 The previous ways to integrate the LeanCloud Counter feature have security problems due to inproper ACL setting.
 To solve this problem, we need a way to ensure only the blogger can add / delete records in Counter.
-Plugin [hexo-leancloud-counter-security(DEPRECATED)](https://github.com/theme-next/hexo-leancloud-counter-security) fixed this problem by createing an admin user, but it is unnecessarily complicated. Using master key instead is much simpler for both plugin and plugin users.
+Plugin [hexo-leancloud-counter-security](https://github.com/theme-next/hexo-leancloud-counter-security) fixed this problem by createing an admin user, but it is unnecessarily complicated. Using master key instead is much simpler for both plugin and plugin users.
 :::
 
 ::: tip How to keep master key safe?
@@ -97,7 +97,7 @@ hexo g && hexo d
 
 ## Add hookguard to application
 
-Inside your application, click `cloud engine -> setting`, fill out `repository` option with `https://github.com/theme-next/hexo-leancloud-counter-hookguard.git` and click `save`.
+Inside your application, click `cloud engine -> setting`, fill out `repository` option with `https://github.com/LEAFERx/hexo-leancloud-counter-hookguard.git` and click `save`.
 
 Then click `cloud engin -> deploy -> git deploy -> deploy`.
 

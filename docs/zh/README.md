@@ -40,7 +40,7 @@ leancloud_counter:
 ::: tip 为什么该插件需要 master key？
 因为不正确的 ACL 设置，之前集成 LeanCloud Counter 的方法均有安全漏洞。
 为了解决这个问题，我们必须保证只有博主可以增删 Counter 中的文章条目。
-[hexo-leancloud-counter-security(DEPRECATED)](https://github.com/theme-next/hexo-leancloud-counter-security) 插件通过创建一个 admin 用户来解决这个问题，但这种方法十分复杂。使用 master key 可以使插件和插件的使用方法更加简单便捷。
+[hexo-leancloud-counter-security](https://github.com/theme-next/hexo-leancloud-counter-security) 插件通过创建一个 admin 用户来解决这个问题，但这种方法十分复杂。使用 master key 可以使插件和插件的使用方法更加简单便捷。
 :::
 
 ::: tip 如何确保 master key 的安全？
@@ -98,7 +98,7 @@ hexo g && hexo d
 
 ## 为你的应用添加 hookguard
 
-在你的应用中，点击 `云引擎 -> 设置`，在 `代码库` 中填入 `https://github.com/theme-next/hexo-leancloud-counter-hookguard.git` 然后点击 `保存`。
+在你的应用中，点击 `云引擎 -> 设置`，在 `代码库` 中填入 `https://github.com/LEAFERx/hexo-leancloud-counter-hookguard.git` 然后点击 `保存`。
 
 然后，点击 `云引擎 -> 部署 -> git 源码部署 -> 部署`。
 

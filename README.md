@@ -34,12 +34,8 @@ This plugin has a peer dependency of `puppeteer`. But don't worry, the plugin wi
 
 ## Documentation
 
-Checkout [here](https://theme-next.github.io/hexo-leancloud-counter).
+Checkout [here](https://leaferx.online/hexo-leancloud-counter).
 
 ## Roadmap
 
-Moved to [#3](https://github.com/theme-next/hexo-leancloud-counter/issues/3).
-
-## Supported Themes
-
-- [hexo-theme-next](https://github.com/theme-next/hexo-theme-next)
+Moved to [#3](https://github.com/LEAFERx/hexo-leancloud-counter/issues/3).

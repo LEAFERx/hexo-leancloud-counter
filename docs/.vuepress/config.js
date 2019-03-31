@@ -11,7 +11,7 @@ module.exports = {
   },
   themeConfig: {
     nav: [
-      { text: 'GitHub', link: 'https://github.com/theme-next/hexo-leancloud-counter' },
+      { text: 'GitHub', link: 'https://github.com/LEAFERx/hexo-leancloud-counter' },
     ],
     locales: {
       '/': {
